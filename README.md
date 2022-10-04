@@ -1,16 +1,19 @@
-# terminal
+# 老黑起始页
 
-A new Flutter project.
+一个基于Flutter的web仿终端起始页
 
-## Getting Started
+## 项目启动
+启动项目前需要安装chrome浏览器。
+项目拉取到本地后，运行以下命令添加依赖
+```sh
+flutter pub get
+```
+成功后运行以下命令启动项目
+```sh
+flutter run -d chrome --web-renderer html
+```
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## 项目打包
+```sh
+flutter build web --web-renderer html
+```
