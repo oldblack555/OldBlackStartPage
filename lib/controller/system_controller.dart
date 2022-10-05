@@ -21,6 +21,7 @@ class SystemController extends ChangeNotifier {
   static late int alpha;
   static late double blur;
   static late String user;
+  static late String blog;
 
   // 系统初始化，类似于开机
   static Future loadSystemInfo() async {
@@ -38,6 +39,7 @@ class SystemController extends ChangeNotifier {
     alpha = preferences.getInt("alpha") ?? defalutAlpha;
     user = preferences.getString("user") ?? defaultUser;
     blur = preferences.getDouble("blur") ?? defaultBlur;
+    blog = preferences.getString("blog") ?? defaultBlog;
   }
 
   // 持久化系统状态，个性化用户的设置，使得用户无需二次设置个人偏好
@@ -60,5 +62,6 @@ class SystemController extends ChangeNotifier {
     preferences.setInt("alpha", alpha);
     preferences.setString("user", user);
     preferences.setDouble("blur", blur);
+    preferences.setString("blog", blog);
   }
 }

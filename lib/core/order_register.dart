@@ -10,6 +10,7 @@ import 'package:terminal/core/orders/love_order.dart';
 import 'package:terminal/core/orders/music_order.dart';
 import 'package:terminal/core/orders/open_order.dart';
 import 'package:terminal/core/orders/search_order.dart';
+import 'package:terminal/core/orders/stackoverflow_order.dart';
 
 /// 指令集，实现的指令需要在OrderCore下注册才可使用
 /// 指令分类:
@@ -19,6 +20,7 @@ import 'package:terminal/core/orders/search_order.dart';
 class OrderCore {
   static final Map<String, BaseOrder> orders = {
     "search": SearchOrder(),
+    "music": MusicOrder(),
     "config": ConfigOrder(),
     "open": OpenOrder(),
     "cd": OpenOrder(),
@@ -31,6 +33,6 @@ class OrderCore {
     "github": GitHubOrder(),
     "info": InfoOrder(),
     "love": LoveOrder(),
-    "music": MusicOrder(),
+    "stackof": StackOverflowOrder(),
   };
 }

@@ -4,6 +4,7 @@ import 'package:terminal/core/base_order.dart';
 import 'package:terminal/provider/others/music_provider.dart';
 import 'package:terminal/resource/music_resource.dart';
 
+/// 娱乐指令（开发阶段）
 /// music指令: 播放音乐
 class MusicOrder extends BaseOrder {
   static final Map<String, MusicParams> _musicParams = {

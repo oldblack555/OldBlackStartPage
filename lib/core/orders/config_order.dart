@@ -18,6 +18,7 @@ class ConfigOrder extends BaseOrder {
     "-fs": ConfigParams.fontSize,
     "-fc": ConfigParams.fontColor,
     "-blur": ConfigParams.blur,
+    "-blog": ConfigParams.blog,
   };
 
   @override
@@ -104,6 +105,9 @@ class ConfigOrder extends BaseOrder {
                 "Config order: invalid value,  minimum value is 0 and maximum value is 100");
           }
           break;
+        case ConfigParams.blog:
+          SystemController.blog = params[i + 1];
+          break;
       }
     }
   }
@@ -128,9 +132,18 @@ class ConfigOrder extends BaseOrder {
         "-fc":
             "Set system font color. The availabel colors are ${systemColors.keys}",
         "-blur": "Set system background blur. Default value is 10",
+        "-blog": "Set individual blog",
       },
     );
   }
 }
 
-enum ConfigParams { searchEngine, background, fontSize, fontColor, alpha, blur }
+enum ConfigParams {
+  searchEngine,
+  background,
+  fontSize,
+  fontColor,
+  alpha,
+  blur,
+  blog,
+}

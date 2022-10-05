@@ -1,3 +1,4 @@
+import 'package:terminal/controller/system_controller.dart';
 import 'package:terminal/core/base_order.dart';
 import 'package:terminal/core/error/order_error.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -12,7 +13,14 @@ class BlogOrder extends BaseOrder {
     if (irs.length != 1) {
       throw OrderError("LhBlog指令: 格式不正确");
     }
-    launchUrl(Uri.parse("https://oldblack555.github.io"));
+    String url = "";
+    if (SystemController.blog.startsWith("http://") ||
+        SystemController.blog.startsWith("https://")) {
+      url = SystemController.blog;
+    } else {
+      url = "http://${SystemController.blog}";
+    }
+    launchUrl(Uri.parse(url));
     return null;
   }
 
