@@ -30,7 +30,7 @@ jobs:
           flutter-version: "3.3.0"
       # 打包
       - run: flutter pub get
-      - run: flutter build web --web-renderer html
+      - run: flutter build web --web-renderer html --base-href /OldBlackStartPage/
 
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@v4
