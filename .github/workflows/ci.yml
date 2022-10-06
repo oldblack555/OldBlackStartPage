@@ -1,0 +1,41 @@
+name: pages
+
+# 工作流程触发的时机，这里是当一个版本标签推送到仓库时触发
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  process:
+    name: all process
+    runs-on: ubuntu-latest
+    # 这个任务的步骤
+    steps:
+      # 拉取项目代码
+      - uses: actions/checkout@v2
+      - name: Set env
+        run: echo ::set-output name=RELEASE_VERSION::${GITHUB_REF#refs/*/}
+      # 建立 java 环境
+      - name: Setup Java JDK
+        uses: actions/setup-java@v2
+        with:
+          distribution: 'zulu'
+          java-version: '11'
+      # 建立 Flutter 环境
+      - name: Flutter action
+        uses: subosito/flutter-action@v1.5.3
+        with:
+          channel: "stable"
+          flutter-version: "3.3.0"
+      # 打包
+      - run: flutter pub get
+      - run: flutter build web --web-renderer html
+
+      - name: Deploy 🚀
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          folder: "build/web"
+          token: ${{ secrets.TOKEN }}
+          git-config-name: "action"
+          git-config-email: "bot@action.com"
