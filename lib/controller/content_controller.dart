@@ -6,6 +6,6 @@ import 'package:flutter/material.dart';
 class ContentController extends ChangeNotifier {
   final TextEditingController editingController = TextEditingController();
 
-  final List<String> message = [];
-  String hintMessage = "";
+  final ValueNotifier<List<String>> message = ValueNotifier([]);
+  ValueNotifier<String> hintMessage = ValueNotifier("");
 }

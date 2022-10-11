@@ -7,7 +7,7 @@ abstract class BaseOrder {
   final List<String> params = [];
 
   // 指令提示信息
-  final Map<String, String> helpInfo = {};
+  final Map<String, dynamic> helpInfo = {};
 
   // 指令初始化，设置指令参数列表和提示信息
   BaseOrder() {
@@ -41,7 +41,7 @@ abstract class BaseOrder {
 
   // 返回指令帮助信息，可选
   // 子类可重写逻辑
-  Map<String, String> help() {
+  Map<String, dynamic> help() {
     return helpInfo;
   }
 }

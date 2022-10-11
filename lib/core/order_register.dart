@@ -8,6 +8,7 @@ import 'package:terminal/core/orders/info_order.dart';
 import 'package:terminal/core/orders/blog_order.dart';
 import 'package:terminal/core/orders/love_order.dart';
 import 'package:terminal/core/orders/music_order.dart';
+import 'package:terminal/core/orders/note_order.dart';
 import 'package:terminal/core/orders/open_order.dart';
 import 'package:terminal/core/orders/search_order.dart';
 import 'package:terminal/core/orders/stackoverflow_order.dart';
@@ -34,5 +35,6 @@ class OrderCore {
     "info": InfoOrder(),
     "love": LoveOrder(),
     "stackof": StackOverflowOrder(),
+    "note": NoteOrder(),
   };
 }

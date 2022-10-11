@@ -1,10 +1,12 @@
+import 'dart:math';
+
 import 'package:provider/provider.dart';
 import 'package:terminal/controller/music_controller.dart';
 import 'package:terminal/main.dart';
 import 'package:terminal/resource/music_resource.dart';
 
 class MusicProvider {
-  static late MusicController? _musicController;
+  static MusicController? _musicController;
 
   static void excute() async {
     init();
@@ -15,33 +17,51 @@ class MusicProvider {
     init();
     _musicController!.isPlay = true;
 
-    await _musicController!.audioplayer.setSourceUrl(
-        _musicController!.playId, music[_musicController!.playId]!);
     await _musicController!.audioplayer
-        .seek(_musicController!.playId, const Duration(seconds: 0));
+        .setSourceUrl(_musicController!.playId!, _musicController!.playId!);
     await _musicController!.audioplayer
-        .setVolume(_musicController!.playId, _musicController!.playVolumn);
-    await _musicController!.audioplayer.resume(_musicController!.playId);
+        .seek(_musicController!.playId!, const Duration(seconds: 0));
+    await _musicController!.audioplayer
+        .setVolume(_musicController!.playId!, _musicController!.playVolumn);
+    await _musicController!.audioplayer.resume(_musicController!.playId!);
   }
 
   static void pause() async {
     init();
-    await _musicController!.audioplayer.pause(_musicController!.playId);
+    if (_musicController!.playId != null) {
+      await _musicController!.audioplayer.pause(_musicController!.playId!);
+    }
   }
 
-  static void setId(String id) async {
+  // 设置播放id，同播放源
+  static void setId() async {
     init();
-    _musicController!.playId = id;
+    int index = 0;
+    if (_musicController!.musicList.isNotEmpty) {
+      index = Random().nextInt(_musicController!.musicList.length);
+    }
+    _musicController!.playId = _musicController!.musicList.isEmpty
+        ? musics[index]
+        : _musicController!.musicList[index];
   }
 
-  static void init() {
-    _musicController = Provider.of<MusicController>(
+  // 初始化播放器
+  static void init() async {
+    _musicController ??= Provider.of<MusicController>(
       navigatorKey.currentState!.overlay!.context,
       listen: false,
     );
+    if (!(_musicController!.isInit)) {
+      _musicController!.isInit = true;
+      await _musicController!.load();
+      _musicController!.audioplayer.completeStream.listen((event) {
+        setId();
+        play();
+      });
+    }
   }
 
-  static void setPause() {
+  static void setPause() async {
     init();
     _musicController!.isPlay = false;
   }

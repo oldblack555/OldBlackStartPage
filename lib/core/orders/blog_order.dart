@@ -14,9 +14,9 @@ class BlogOrder extends BaseOrder {
       throw OrderError("LhBlog指令: 格式不正确");
     }
     String url = "";
-    if (SystemController.blog.startsWith("http://") ||
-        SystemController.blog.startsWith("https://")) {
-      url = SystemController.blog;
+    if (SystemController.blog!.startsWith("http://") ||
+        SystemController.blog!.startsWith("https://")) {
+      url = SystemController.blog!;
     } else {
       url = "http://${SystemController.blog}";
     }

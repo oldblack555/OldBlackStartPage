@@ -4,6 +4,7 @@ import 'package:terminal/controller/content_controller.dart';
 import 'package:terminal/controller/music_controller.dart';
 import 'package:terminal/controller/user_controller.dart';
 import 'package:terminal/handle/global_catch_error.dart';
+import 'package:terminal/provider/others/content_provider.dart';
 import 'package:terminal/provider/others/system_provider.dart';
 import 'package:terminal/provider/others/user_provider.dart';
 import 'package:terminal/ui/terminal/terminal_ui.dart';
@@ -33,9 +34,10 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    Future.delayed(const Duration(seconds: 0)).then(
-      (value) => UserProvider.load(),
-    );
+    Future.delayed(const Duration(seconds: 0)).then((value) {
+      UserProvider.load();
+      ContentProvider.init();
+    });
     return MaterialApp(
       navigatorKey: navigatorKey,
       title: '老黑起始页',

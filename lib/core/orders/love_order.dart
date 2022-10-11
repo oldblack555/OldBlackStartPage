@@ -36,13 +36,13 @@ class LoveOrder extends BaseOrder {
     }
     switch (loveParams) {
       case LoveParams.add:
-        UserProvider.add(params[1], params[2]);
+        UserProvider.tabsProvider!.add(params[1], params[2]);
         break;
       case LoveParams.delete:
-        UserProvider.remove(params[1]);
+        UserProvider.tabsProvider!.remove(params[1]);
         break;
       case LoveParams.rename:
-        UserProvider.rename(params[1], params[2]);
+        UserProvider.tabsProvider!.rename(params[1], params[2]);
         break;
     }
     setHelp();
@@ -58,7 +58,7 @@ class LoveOrder extends BaseOrder {
       "-d": "Delete a key-value in the cache",
       "Tab list": "",
     });
-    super.helpInfo.addAll(UserProvider.getAll());
+    super.helpInfo.addAll(UserProvider.tabsProvider!.getAll());
   }
 
   @override

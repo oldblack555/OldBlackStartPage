@@ -18,7 +18,7 @@ class OpenOrder extends BaseOrder {
     }
 
     // 判断是用户收藏的tab还是url。
-    String url = UserProvider.get(irs.last) ?? irs.last;
+    String url = UserProvider.tabsProvider!.get(irs.last) ?? irs.last;
 
     //补全http://
     if (!url.startsWith("http://") && !url.startsWith("https://")) {

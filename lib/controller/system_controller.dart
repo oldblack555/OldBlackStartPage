@@ -12,16 +12,16 @@ class SystemController extends ChangeNotifier {
   static late BaseOrderProvider baseOrderProvider;
 
   // 系统属性
-  static late String defaultSearchEngine;
-  static late bool bgIsImg;
-  static late Color backgroundColor;
-  static late String backgroundImage;
-  static late double fontSize;
-  static late Color fontColor;
-  static late int alpha;
-  static late double blur;
-  static late String user;
-  static late String blog;
+  static String? defaultSearchEngine;
+  static bool? bgIsImg;
+  static Color? backgroundColor;
+  static String? backgroundImage;
+  static double? fontSize;
+  static Color? fontColor;
+  static int? alpha;
+  static double? blur;
+  static String? user;
+  static String? blog;
 
   // 系统初始化，类似于开机
   static Future loadSystemInfo() async {
@@ -45,23 +45,23 @@ class SystemController extends ChangeNotifier {
   // 持久化系统状态，个性化用户的设置，使得用户无需二次设置个人偏好
   static void saveLoadInfo() async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
-    preferences.setString("engine", defaultSearchEngine);
-    preferences.setBool("isImg", bgIsImg);
+    preferences.setString("engine", defaultSearchEngine!);
+    preferences.setBool("isImg", bgIsImg!);
     preferences.setString(
         "bgColor",
         systemColors.entries
             .firstWhere((element) => element.value == backgroundColor)
             .key);
-    preferences.setString("bgImg", backgroundImage);
-    preferences.setDouble("fontSize", fontSize);
+    preferences.setString("bgImg", backgroundImage!);
+    preferences.setDouble("fontSize", fontSize!);
     preferences.setString(
         "fontColor",
         systemColors.entries
             .firstWhere((element) => element.value == fontColor)
             .key);
-    preferences.setInt("alpha", alpha);
-    preferences.setString("user", user);
-    preferences.setDouble("blur", blur);
-    preferences.setString("blog", blog);
+    preferences.setInt("alpha", alpha!);
+    preferences.setString("user", user!);
+    preferences.setDouble("blur", blur!);
+    preferences.setString("blog", blog!);
   }
 }
